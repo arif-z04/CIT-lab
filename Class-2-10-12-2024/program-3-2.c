@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 typedef double Prices;
+
 int main(){
     
-    
+
+
     Prices Rice, Sugar;
 
     printf("Enter the price for Rice: ");
