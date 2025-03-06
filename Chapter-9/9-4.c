@@ -5,35 +5,21 @@
 #define MAX_TEXT 1000
 #define MAX_WORD 50
 
-void toLowerCase(char str[])
-{
-    for (int i = 0; str[i]; i++)
-    {
+void toLowerCase(char str[]) {
+    for (int i = 0; str[i]; i++) {
         str[i] = tolower(str[i]);
     }
 }
 
-int countOccurrences(char text[], char word[])
-{
-    int count = 0;
-    char *pos = text;
-    int wordLen = strlen(word);
-
-    while ((pos = strstr(pos, word)) != NULL)
-    {
-        if ((pos == text || !isalnum(*(pos - 1))) && !isalnum(*(pos + wordLen)))
-        {
-            count++;
-        }
-        pos += wordLen;
-    }
-
-    return count;
+int isWordBoundary(char c){
+    return !isalnum(c);
 }
 
-int main()
-{
+int main(){
     char text[MAX_TEXT], word[MAX_WORD];
+
+    int count = 0;
+    char *pos;
 
     printf("Enter text: ");
     fgets(text, MAX_TEXT, stdin);
@@ -42,12 +28,21 @@ int main()
     printf("Enter word to count: ");
     scanf("%s", word);
 
+    pos = text;
+
     toLowerCase(text);
     toLowerCase(word);
 
-    int occurrences = countOccurrences(text, word);
-
-    printf("The word '%s' appears %d times in the text.\n", word, occurrences);
+    while((pos=strstr(pos, word))!=NULL){
+        int isStartBoundary = (pos==text || isWordBoundary(*(pos-1)));
+        int isEndBoundary = (pos + strlen(word) == text + strlen(text) || isWordBoundary(*(pos+strlen(word))));
+        
+        if(isStartBoundary && isEndBoundary){
+            count++;
+        }
+        pos+=strlen(word);
+    }
+    printf("The word '%s' appears %d times in the text.\n", word, count);
 
     return 0;
 }
