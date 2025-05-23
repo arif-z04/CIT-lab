@@ -1,0 +1,1 @@
+fscanf(time, "%d", &t)

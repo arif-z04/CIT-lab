@@ -1,0 +1,1 @@
+{"name":"Local: test","url":"e:\\CIT class\\mid question solve\\test.cpp","tests":[{"id":1741627750939,"input":"5\n10 4\n13 9\n100 13\n123 456\n92 46\n","output":"2\n5\n4\n333\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\CIT class\\mid question solve\\test.cpp","group":"local","local":true}
